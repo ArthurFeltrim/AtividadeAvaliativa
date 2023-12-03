@@ -70,7 +70,6 @@ $conn->close();
             <tr>
                 <th>ID</th>
                 <th>Login</th>
-                <!-- Adicione mais colunas conforme necessário -->
             </tr>
         </thead>
         <tbody>
@@ -81,7 +80,6 @@ $conn->close();
                     echo "<tr>";
                     echo "<td>" . $row['ID'] . "</td>";
                     echo "<td>" . $row['Login'] . "</td>";
-                    // Adicione mais colunas conforme necessário
                     echo "</tr>";
                 }
             } else {
