@@ -127,13 +127,11 @@ $usuario_logado = $_SESSION['login'];
     </hover>
     <!-- Conteúdo da Tela Inicial -->
     <h3>Relatório de Usuários Cadastrados</h3>
-    <!-- Coloque aqui o código para exibir o relatório de usuários -->
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Login</th>
-                <!-- Adicione mais colunas conforme necessário -->
             </tr>
         </thead>
         <tbody>
@@ -144,7 +142,6 @@ $usuario_logado = $_SESSION['login'];
                     echo "<tr>";
                     echo "<td>" . $row['ID'] . "</td>";
                     echo "<td>" . $row['Login'] . "</td>";
-                    // Adicione mais colunas conforme necessário
                     echo "</tr>";
                 }
             } else {
