@@ -1,0 +1,16 @@
+Banco de dados sql
+
+CREATE DATABASE Avaliacao;
+
+USE Avaliacao;
+
+CREATE TABLE usuarios (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Login VARCHAR(255) NOT NULL,
+    Senha VARCHAR(255) NOT NULL
+);
+
+INSERT INTO usuarios (Login, Senha) VALUES ('admin', '123');
+
+
+select*from usuarios;
