@@ -109,6 +109,7 @@ $usuario_logado = $_SESSION['login'];
     <header>
         <table>
             <h2>Bem-vindo, <?php echo $usuario_logado; ?>!</h2>
+            <?php echo'<a href="logout.php">Logout</a>' ?>
         </table>
     </header>
 
@@ -119,7 +120,7 @@ $usuario_logado = $_SESSION['login'];
             <li><a href="cadastro_usuarios.php">Cadastro de Usuários</a></li>
             <li><a href="relatorio_usuarios.php">Relatórios de Usuários</a></li>
             <li><a href="atualizacao_usuarios.php">Atualização de Usuários</a></li>
-            <li><a href="delecao_usuarios.php">Deleção de Usuários</a></li>
+            <li><a href="deletar_usuarios.php">Deleção de Usuários</a></li>
             <li><a href="logoff.php">Logoff</a></li>
         </ul>
     </nav>
