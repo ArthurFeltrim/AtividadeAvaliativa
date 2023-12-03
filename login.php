@@ -44,6 +44,34 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        body{
+            font-family: 'Arial', sans-serif;
+            margin: 10px;
+            padding: 100px;
+            background-color: #f0f0f0;
+            text-align:center;
+            border-radius:10px;
+            border-bottom: 2px solid #fff; 
+            
+            
+            
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 5px;
+            text-align:center;
+        }
+        input {
+            width: 20%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            text-align:center;
+        }
+        
+    </style>
 </head>
 <body>
     <h2>Login</h2>
@@ -54,7 +82,7 @@ $conn->close();
 
     <form method="post" action="">
         <label for="login">Login:</label>
-        <input type="text" name="login" required><br>
+        <input type="text" name="login" required><br><br>
 
         <label for="senha">Senha:</label>
         <input type="password" name="senha" required><br>

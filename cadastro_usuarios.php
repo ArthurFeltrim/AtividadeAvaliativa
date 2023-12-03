@@ -1,5 +1,5 @@
 <?php
-// Conectar ao banco de dados (substitua os valores conforme necessário)
+ 
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -8,15 +8,13 @@ $dbname = "Avaliacao";
 function cadastrarUsuario($login, $senha) {
     global $servername, $username, $password, $dbname;
 
-    // Validar dados (adapte conforme necessário)
     if (empty($login) || empty($senha)) {
         return "Preencha todos os campos.";
     }
 
-    // Conectar ao banco de dados
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Verificar a conexão
+    // Verifica a conexão
     if ($conn->connect_error) {
         die("Conexão falhou: " . $conn->connect_error);
     }
@@ -60,6 +58,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuário</title>
+    <style>
+        body{
+            font-family: 'Arial', sans-serif;
+            margin: 10px;
+            padding: 100px;
+            background-color: #f0f0f0;
+            text-align:center;
+            border-radius:10px;
+            border-bottom: 2px solid #fff; 
+            
+            
+            
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            padding: 5px;
+            text-align:center;
+        }
+        input {
+            width: 20%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
     <h2>Cadastrar Usuário</h2>

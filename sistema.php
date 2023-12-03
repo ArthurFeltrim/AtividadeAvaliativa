@@ -121,7 +121,7 @@ $usuario_logado = $_SESSION['login'];
             <li><a href="relatorio_usuarios.php">Relatórios de Usuários</a></li>
             <li><a href="atualizacao_usuarios.php">Atualização de Usuários</a></li>
             <li><a href="deletar_usuarios.php">Deleção de Usuários</a></li>
-            <li><a href="logoff.php">Logoff</a></li>
+            <li><a href="logout.php">Logoff</a></li>
         </ul>
     </nav>
     </hover>
