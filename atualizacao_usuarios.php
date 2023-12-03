@@ -25,7 +25,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $sql = "SELECT * FROM usuarios WHERE ID = $id";
     $result = $conn->query($sql);
 
-    // Verifica se o usuário existe
+    // Verificar se o usuário existe
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $login = $row['Login'];
@@ -35,13 +35,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         exit;
     }
 
-    // Fecha a conexão
+    // Fechar a conexão
     $conn->close();
 }
 
 // Processar o formulário de atualização quando enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    // Sanitizar e validar dados
+    $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+    $login = filter_var($_POST['login'], FILTER_SANITIZE_STRING);
+    $senha = $_POST['senha']; // Utiliza a senha diretamente (sem criptografia)
 
     // Conectar ao banco de dados
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -51,13 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Conexão falhou: " . $conn->connect_error);
     }
 
-    // Atualizar informações do usuário no banco de dados
-    $sql_update = "UPDATE usuarios SET Login = '$login', Senha = '$senha' WHERE ID = $id";
+    // Atualizar a senha do usuário no banco de dados
+    $sql_update = "UPDATE usuarios SET Senha = '$senha' WHERE ID = $id";
 
     if ($conn->query($sql_update) === TRUE) {
-        echo "Informações do usuário atualizadas com sucesso.";
+        echo "Senha do usuário atualizada com sucesso.";
     } else {
-        echo "Erro ao atualizar informações do usuário: " . $conn->error;
+        echo "Erro ao atualizar senha do usuário: " . $conn->error;
     }
 
     // Fechar a conexão
@@ -66,17 +69,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Cadastros</title>
+    <title>Atualização de Usuários</title>
     <style>
-        body {
+         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            color: #333;
         }
 
         h2 {
@@ -97,7 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         label {
             display: block;
             margin-bottom: 10px;
-            color: #333;
         }
 
         input {
@@ -144,12 +147,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         a:hover {
-            color: #555;
+            color: #836FFF;
+            transition:0.7s;
         }
     </style>
 </head>
 <body>
-    <h2>Atualização de Cadastrados</h2>
+    <h2>Atualização de Usuários</h2>
 
     <!-- Formulário de Atualização -->
     <form method="post" action="">
@@ -159,48 +163,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="login" value="<?php echo $login; ?>" required>
 
         <label for="senha">Nova Senha:</label>
-        <input type="password" name="senha">
+        <input type="password" name="senha" required>
 
-        <input type="submit" value="Atualizar">
+        <input type="submit" value="Atualizar Senha">
     </form>
 
     <!-- Tabela para Facilitar a Atualização -->
-    <h2>Cadastros disponiveis para atualizar</h2>
+    <h2>Usuários Disponíveis para Atualização</h2>
 
-    <?php
-    // Conectar ao banco de dados
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Login</th>
+                <th>Atualizar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Conectar ao banco de dados
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Verificar a conexão
-    if ($conn->connect_error) {
-        die("Conexão falhou: " . $conn->connect_error);
-    }
+            // Verificar a conexão
+            if ($conn->connect_error) {
+                die("Conexão falhou: " . $conn->connect_error);
+            }
 
-    // Consultar usuários no banco de dados
-    $sql_select = "SELECT ID, Login FROM usuarios";
-    $result_select = $conn->query($sql_select);
+            // Consultar usuários no banco de dados
+            $sql_select = "SELECT ID, Login FROM usuarios";
+            $result_select = $conn->query($sql_select);
 
-    // Tabela de Usuários para Facilitar a Atualização
-    echo "<table border='1'>";
-    echo "<thead><tr><th>ID</th><th>Login</th><th>Atualizar</th></tr></thead>";
-    echo "<tbody>";
+            // Tabela de Usuários para Facilitar a Atualização
+            if ($result_select->num_rows > 0) {
+                while ($row = $result_select->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row['ID'] . "</td>";
+                    echo "<td>" . $row['Login'] . "</td>";
+                    echo "<td><a href='atualizacao_usuarios.php?id=" . $row['ID'] . "'>Atualizar Senha</a></td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='3'>Nenhum usuário cadastrado</td></tr>";
+            }
 
-    if ($result_select->num_rows > 0) {
-        while ($row = $result_select->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row['ID'] . "</td>";
-            echo "<td>" . $row['Login'] . "</td>";
-            echo "<td><a href='atualizacao_usuarios.php?id=" . $row['ID'] . "'>Atualizar</a></td>";
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='3'>Nenhum usuário cadastrado</td></tr>";
-    }
-
-    echo "</tbody></table>";
-
-    // Fechar a conexão
-    $conn->close();
-    ?>
+            // Fechar a conexão
+            $conn->close();
+            ?>
+        </tbody>
+    </table>
 </body>
 </html>
