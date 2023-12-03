@@ -27,6 +27,39 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Usuários</title>
+    <style>
+        
+        body{
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
     <h2>Relatório de Usuários</h2>

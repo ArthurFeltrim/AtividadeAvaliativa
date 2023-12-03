@@ -37,6 +37,7 @@ $usuario_logado = $_SESSION['login'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema</title>
     <style>
+        
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -45,27 +46,34 @@ $usuario_logado = $_SESSION['login'];
         }
 
         header {
-            background-color: #333;
-            color: white;
-            text-align: center;
+            background-color: #708090;
+            color: #1C1C1C;
+            text-align: left;
             padding: 20px;
+            border-bottom: 2px solid #fff; 
+            border:1px solid black;
+
         }
 
         nav {
             background-color: #444;
             padding: 10px;
-            text-align: center;
+            
         }
 
         nav a {
             color: white;
             text-decoration: none;
             padding: 10px;
-            margin:  10px;
-            font-size: 30px;
-            font-family: comic;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: color 0.7s ease; /* Adiciona transição suave à cor de fundo durante 0.7 segundos */
         }
 
+        nav a:hover {
+            color: #555; /* Cor de fundo ao passar o mouse */
+        }
+        
         table {
             border-collapse: collapse;
             width: 100%;
@@ -86,14 +94,26 @@ $usuario_logado = $_SESSION['login'];
         }
 
         tbody tr:hover {
-            background-color: #f5f5f5;
+            background-color:#A9A9A9;
         }
+        h3{
+            border: 1px solid black;
+             border-radius: 2px solid #A9A9A9;
+        }
+
+
+
     </style>
 </head>
 <body>
-    <h2>Bem-vindo, <?php echo $usuario_logado; ?>!</h2>
+    <header>
+        <table>
+            <h2>Bem-vindo, <?php echo $usuario_logado; ?>!</h2>
+        </table>
+    </header>
 
     <!-- Menu de Navegação -->
+    <hover>
     <nav>
         <ul>
             <li><a href="cadastro_usuarios.php">Cadastro de Usuários</a></li>
@@ -103,9 +123,9 @@ $usuario_logado = $_SESSION['login'];
             <li><a href="logoff.php">Logoff</a></li>
         </ul>
     </nav>
-
+    </hover>
     <!-- Conteúdo da Tela Inicial -->
-    <h3>Tela Inicial - Relatório de Usuários</h3>
+    <h3>Relatório de Usuários Cadastrados</h3>
     <!-- Coloque aqui o código para exibir o relatório de usuários -->
     <table>
         <thead>
