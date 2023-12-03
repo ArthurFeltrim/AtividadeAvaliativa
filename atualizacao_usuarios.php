@@ -1,5 +1,5 @@
 <?php
-// Conectar ao banco de dados (substitua os valores conforme necessário)
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -8,7 +8,7 @@ $dbname = "Avaliacao";
 // Inicializar variáveis
 $id = $login = $senha = "";
 
-// Verificar se o ID do usuário foi fornecido via GET
+
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     // Sanitizar o ID do usuário
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
@@ -29,7 +29,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $login = $row['Login'];
-        // Pode adicionar mais campos conforme necessário
+     
     } else {
         echo "Usuário não encontrado.";
         exit;
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitizar e validar dados
     $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
     $login = filter_var($_POST['login'], FILTER_SANITIZE_STRING);
-    $senha = $_POST['senha']; // Utiliza a senha diretamente (sem criptografia)
+    $senha = $_POST['senha'];
 
     // Conectar ao banco de dados
     $conn = new mysqli($servername, $username, $password, $dbname);
