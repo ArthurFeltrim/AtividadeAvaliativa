@@ -4,8 +4,8 @@ session_start();
 
 // Para se conectar ao meu banco de dados
 $servername = "localhost";
-$username = "seu_usuario";
-$password = "sua_senha";
+$username = "root";
+$password = "root";
 $dbname = "Avaliacao";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
