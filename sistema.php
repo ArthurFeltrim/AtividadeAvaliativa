@@ -67,11 +67,10 @@ $usuario_logado = $_SESSION['login'];
             padding: 10px;
             margin: 0 10px;
             font-size: 20px;
-            transition: color 0.7s ease; /* Adiciona transição suave à cor de fundo durante 0.7 segundos */
-        }
+            transition: color 0.7s ease; 
 
         nav a:hover {
-            color: #555; /* Cor de fundo ao passar o mouse */
+            color: #555; 
         }
         
         table {
